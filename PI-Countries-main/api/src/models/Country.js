@@ -12,23 +12,23 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     img: {
-      type: DataTypes.BLOB,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     continent: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     capital: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     subregion: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     area: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     population: {

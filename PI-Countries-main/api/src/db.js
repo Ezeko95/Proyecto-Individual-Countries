@@ -14,10 +14,10 @@ const sequelize = new Sequelize(
 CountryModel(sequelize);
 ActivityModel(sequelize);
 
-const { Country, Activities } = sequelize.models;
+const { Country, Activity } = sequelize.models;
 
 Country.belongsToMany(Activity, { through: "country-activity" });
-Activity.belongsToMany(Country, { through: "activity-country" });
+Activity.belongsToMany(Country, { through: "country-activity" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

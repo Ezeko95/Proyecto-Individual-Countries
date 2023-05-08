@@ -5,7 +5,7 @@ const {
   countryPostHandler,
 } = require("../Handlers/countryHandler");
 
-const countryRouter = Router;
+const countryRouter = Router();
 
 countryRouter.get("/", countryHandler);
 countryRouter.get("/:id", countryIdHandler);
