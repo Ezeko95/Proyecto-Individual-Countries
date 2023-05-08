@@ -6,6 +6,7 @@ const getAllCountries = async () => {
   const apiResponse = await axios.get("https://restcountries.com/v3/all");
   // console.log(apiResponse.data);
   const countries = apiResponse.data.map((country) => ({
+    id: country.cca3,
     name: country.name.common,
     flag: country.flags.find((flag) => flag.endsWith(".png")), // find para que traiga un solo archivo
     continent: Array.isArray(country.continent)
