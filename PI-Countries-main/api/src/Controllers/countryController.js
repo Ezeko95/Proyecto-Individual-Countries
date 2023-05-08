@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { URL } = process.env;
+const { Op } = require("sequelize");
 const { Country } = require("../db");
 
 const getAllCountries = async () => {
@@ -25,4 +25,16 @@ const getAllCountries = async () => {
   return savedCountries;
 };
 
-module.exports = getAllCountries;
+const getCountriesByName = async (name) => {
+  const country = await Country.findAll({
+    where: { name: { [Op.like]: `%${name}` } },
+  });
+  return country;
+};
+
+const getCountriesById = async (id) => {
+  const country = Country.findOne({ where: { id } });
+  return country;
+};
+
+module.exports = { getAllCountries, getCountriesByName, getCountriesById };
