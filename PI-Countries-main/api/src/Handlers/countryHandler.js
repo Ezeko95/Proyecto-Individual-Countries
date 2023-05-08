@@ -24,12 +24,9 @@ const countryIdHandler = async (req, res) => {
   } catch (error) {
     console.error("Error ocurred while fecthing country by ID", error);
     res.status(400).json({
-      error: "Failed to fetch countries by ID. Please try again later",
+      error: "Failed to fetch countries by ID. Please try again later.",
     });
   }
 };
-const countryPostHandler = async (req, res) => {
-  res.status(200).send("ok");
-};
 
-module.exports = { countryHandler, countryIdHandler, countryPostHandler };
+module.exports = { countryHandler, countryIdHandler };
