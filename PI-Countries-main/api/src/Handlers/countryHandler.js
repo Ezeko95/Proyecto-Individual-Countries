@@ -1,3 +1,4 @@
+const { Country } = require("../db");
 const {
   getAllCountries,
   getCountriesByName,
@@ -7,7 +8,7 @@ const {
 const countryHandler = async (req, res) => {
   const { name } = req.query;
   try {
-    results = name ? await getCountriesByName(name) : await getAllCountries();
+    results = name ? await getCountriesByName(name) : await Country.findAll();
     res.status(200).json(results);
   } catch (error) {
     console.error("Error occurred while fetching countries:", error);

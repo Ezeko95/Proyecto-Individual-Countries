@@ -20,7 +20,7 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
   server.listen(3001, () => {
     console.log("Wake up, Neo...");
   });

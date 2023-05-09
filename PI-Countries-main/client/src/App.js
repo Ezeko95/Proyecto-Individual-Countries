@@ -1,12 +1,10 @@
 import "./App.css";
-import Landing from "./Views/Landing/landing";
-import Detail from "./Views/Detail/detail";
-import Home from "./Views/Home/home";
-import Form from "./Views/Form/form";
 import NavBar from "./Components/NavBar/navBar";
+import { Landing, Home, Form, Detail } from "./Views";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
   return (
     <div>
       {location.pathname !== "/" && <NavBar />}
