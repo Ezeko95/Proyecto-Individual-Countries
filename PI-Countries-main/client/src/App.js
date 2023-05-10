@@ -1,13 +1,10 @@
 import "./App.css";
-import NavBar from "./Components/NavBar/navBar";
 import { Landing, Home, Form, Detail } from "./Views";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const location = useLocation();
   return (
     <div>
-      {location.pathname !== "/" && <NavBar />}
       <Routes>
         <Route exact path="/" element={<Landing />} />
 
