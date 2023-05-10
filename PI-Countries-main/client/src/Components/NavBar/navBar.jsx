@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <div>
       <Link to="/home">HOME</Link>
-      <Link to="/create">FORM</Link>
+      <Link to="/form">FORM</Link>
       {/* <div>
         <form action="search">
           <input

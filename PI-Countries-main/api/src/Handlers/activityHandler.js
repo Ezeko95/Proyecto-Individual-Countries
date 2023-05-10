@@ -21,10 +21,8 @@ const activityPostHandler = async (req, res) => {
 };
 
 const activityHandler = async (req, res) => {
-  const { id } = req.params;
-
   try {
-    const activity = await Activity.findByPK(id);
+    const activity = await Activity.findAll();
     res.status(200).send(activity);
   } catch (error) {
     console.error("Error ocurred while fetching activity", error);
