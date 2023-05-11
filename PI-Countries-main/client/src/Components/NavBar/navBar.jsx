@@ -1,22 +1,21 @@
 import { Link } from "react-router-dom";
+import style from "./navBar.module.css";
 
 export default function NavBar() {
   return (
-    <div>
-      <Link to="/home">HOME</Link>
-      <Link to="/form">FORM</Link>
-      {/* <div>
-        <form action="search">
-          <input
-            placeholder="Busqueda"
-            type="search"
-            onChange={(e) => handleChange(e)}
-          />
-          <button type="submit" onClick={handleSubmit}>
-            Search...
-          </button>
-        </form>
-      </div> */}
-    </div>
+    <ul>
+      <Link to={"/form"}>
+        <li>
+          <a href="default.asp" className={style.active}>
+            Create activity
+          </a>
+        </li>
+      </Link>
+      <Link to={"/about"}>
+        <li>
+          <a href="about.asp">About</a>
+        </li>
+      </Link>
+    </ul>
   );
 }

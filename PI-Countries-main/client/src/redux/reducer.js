@@ -3,7 +3,6 @@ import {
   CLEAN_DETAIL,
   GET_COUNTRY_ID,
   GET_ACTIVITIES,
-  POST_ACTIVITIES,
 } from "./actions";
 
 const initialState = {
@@ -36,11 +35,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         activities: action.payload,
-      };
-
-    case POST_ACTIVITIES:
-      return {
-        ...state,
       };
 
     default:

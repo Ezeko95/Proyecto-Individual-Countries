@@ -3,14 +3,16 @@ import style from "./card.module.css";
 
 export default function Card({ id, name, flag, continent }) {
   return (
-    <div className={style.card}>
-      <div className={style.flagContainer}>
-        <img src={flag} alt={name} width="300" height="150" />
+    <Link to={`/detail/${id}`}>
+      <div className={style.card}>
+        <img src={flag} alt="flag" height="130" width="230" />
+        <div className={style.container}>
+          <h4>
+            <b>{name}</b>
+          </h4>
+          <p>{continent}</p>
+        </div>
       </div>
-      <Link to={`/detail/${id}`}>
-        <h2 className={style.titulo}>{name}</h2>
-      </Link>
-      <h2>{continent}</h2>
-    </div>
+    </Link>
   );
 }

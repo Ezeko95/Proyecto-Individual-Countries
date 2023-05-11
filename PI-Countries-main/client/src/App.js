@@ -1,5 +1,5 @@
 import "./App.css";
-import { Landing, Home, Form, Detail } from "./Views";
+import { Landing, Home, Form, Detail, About } from "./Views";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -11,6 +11,8 @@ function App() {
         <Route path="/home" element={<Home />} />
 
         <Route path="/detail/:id" element={<Detail />} />
+
+        <Route path="/about" element={<About />} />
 
         <Route path="/form" element={<Form />} />
       </Routes>

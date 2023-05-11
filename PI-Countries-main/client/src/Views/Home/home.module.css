@@ -3,3 +3,8 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.pages {
+  display: flex;
+  justify-content: center;
+}

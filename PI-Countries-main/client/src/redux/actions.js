@@ -5,7 +5,6 @@ export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME";
 export const GET_COUNTRY_ID = "GET_COUNTRY_ID";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
-export const POST_ACTIVITIES = "POST_ACTIVITIES";
 
 export const getCountries = () => async (dispatch) => {
   try {
@@ -34,17 +33,6 @@ export const getCountryId = (id) => {
 
 export const cleanDetail = () => {
   return { type: CLEAN_DETAIL };
-};
-
-export const postActivity = (payload) => {
-  return async function (dispatch) {
-    const response = await axios.post(
-      `http://localhost:3001/activities`,
-      payload
-    );
-    console.log(response);
-    return response;
-  };
 };
 
 export const getActivities = () => {

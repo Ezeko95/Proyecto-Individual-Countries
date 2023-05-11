@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getCountries, postActivity } from "../../redux/actions";
+import { getCountries } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import style from "./form.module.css";
