@@ -1,4 +1,3 @@
-const { Country } = require("../db");
 const {
   getAllCountries,
   getCountriesByName,
@@ -8,7 +7,15 @@ const {
 const countryHandler = async (req, res) => {
   const { name } = req.query;
   try {
-    results = name ? await getCountriesByName(name) : await Country.findAll();
+    let results;
+    if (name) {
+      results = await getCountriesByName(name);
+    } else {
+      results = await getAllCountries();
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "No countries found." });
+    }
     res.status(200).json(results);
   } catch (error) {
     console.error("Error occurred while fetching countries:", error);
@@ -17,6 +24,7 @@ const countryHandler = async (req, res) => {
       .json({ error: "Failed to fetch countries. Please try again later." });
   }
 };
+
 const countryIdHandler = async (req, res) => {
   const { id } = req.params;
   try {

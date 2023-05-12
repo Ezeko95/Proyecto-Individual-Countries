@@ -1,6 +1,6 @@
 import Card from "../../Components/Card/card";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, getCountryByName } from "../../redux/actions";
+import { getCountries } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import NavBar from "../../Components/NavBar/navBar";
 import style from "./home.module.css";
@@ -9,7 +9,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 15;
+  const itemsPerPage = 18;
 
   useEffect(() => {
     dispatch(getCountries());
@@ -29,11 +29,6 @@ export default function Home() {
 
   const goToNextPage = () => {
     setCurrentPage(currentPage + 1);
-  };
-  /////////////////////////////////search///////////////////////////////////////////
-
-  const onSearch = (name) => {
-    const search = getCountryByName(name);
   };
 
   return (

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "./navBar.module.css";
+import Search from "../Search/search";
 
 export default function NavBar() {
   return (
@@ -16,6 +17,7 @@ export default function NavBar() {
           <a href="about.asp">About</a>
         </li>
       </Link>
+      <Search></Search>
     </ul>
   );
 }
