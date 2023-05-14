@@ -20,3 +20,29 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+.filter {
+  display: flex;
+  justify-content: center;
+}
+
+.filter label {
+  float: right;
+  padding: 12px;
+  margin-top: 3px;
+  background: #ddd;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.filter select {
+  float: right;
+  padding: 12px;
+  margin-top: 3px;
+  margin-right: 10px;
+  background: #ddd;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}

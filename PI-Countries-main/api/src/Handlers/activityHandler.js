@@ -2,7 +2,7 @@
 const { Activity } = require("../db");
 
 const activityPostHandler = async (req, res) => {
-  const { name, difficulty, duration, season } = req.body;
+  const { name, difficulty, duration, season, country } = req.body;
 
   try {
     let newActivity = await Activity.create({
@@ -10,6 +10,7 @@ const activityPostHandler = async (req, res) => {
       difficulty,
       duration,
       season,
+      country,
     });
     res.status(200).send(newActivity);
   } catch (error) {

@@ -10,6 +10,7 @@ export default function Home() {
   const countries = useSelector((state) => state.countries);
   const [selectedContinent, setSelectedContinent] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState(""); // Track the sort order
   const itemsPerPage = 15;
 
   useEffect(() => {
@@ -20,9 +21,11 @@ export default function Home() {
     ? countries.filter((country) => country.continent === selectedContinent)
     : countries;
 
-  const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
+  const sortedCountries = sortCountries(filteredCountries, sortOrder);
 
-  const paginateCountries = filteredCountries.slice(
+  const totalPages = Math.ceil(sortedCountries.length / itemsPerPage);
+
+  const paginateCountries = sortedCountries.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -37,8 +40,27 @@ export default function Home() {
 
   const handleContinentChange = (event) => {
     setSelectedContinent(event.target.value);
-    setCurrentPage(1); // Reset current page when changing the continent filter
+    setCurrentPage(1);
   };
+
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
+  function sortCountries(countries, sortOrder) {
+    switch (sortOrder) {
+      case "ascName":
+        return countries.sort((a, b) => a.name.localeCompare(b.name));
+      case "descName":
+        return countries.sort((a, b) => b.name.localeCompare(a.name));
+      case "ascPopulation":
+        return countries.sort((a, b) => a.population - b.population);
+      case "descPopulation":
+        return countries.sort((a, b) => b.population - a.population);
+      default:
+        return countries;
+    }
+  }
 
   return (
     <>
@@ -47,13 +69,21 @@ export default function Home() {
       <div className={style.filter}>
         <label>Filter by Continent: </label>
         <select value={selectedContinent} onChange={handleContinentChange}>
-          <option value="">All</option>
+          <option value="">Todos</option>
           <option value="Africa">Africa</option>
           <option value="Asia">Asia</option>
           <option value="Europe">Europe</option>
           <option value="North America">North America</option>
           <option value="Oceania">Oceania</option>
           <option value="South America">South America</option>
+        </select>
+        <label>Sort by: </label>
+        <select value={sortOrder} onChange={handleSortChange}>
+          <option value="">--Ordenar--</option>
+          <option value="ascName">Nombre (A-Z)</option>
+          <option value="descName">Nombre (Z-A)</option>
+          <option value="ascPopulation">Población (Menor a Mayor)</option>
+          <option value="descPopulation">Población (Mayor a Menor)</option>
         </select>
       </div>
 

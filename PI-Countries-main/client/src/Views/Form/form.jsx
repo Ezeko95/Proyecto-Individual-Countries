@@ -59,6 +59,7 @@ export default function Form() {
   const sortedCountries = countries.sort((a, b) =>
     a.name.localeCompare(b.name)
   );
+  console.log(activity.country);
 
   return (
     <div className={style.formContainer}>

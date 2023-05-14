@@ -9,7 +9,6 @@ export default function NavBar() {
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
-    console.log(search);
   };
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -10,6 +10,7 @@ export default function Detail() {
   const dispatch = useDispatch();
   let { id } = useParams();
   const countryDetail = useSelector((state) => state.countryDetail);
+  console.log(countryDetail);
 
   useEffect(() => {
     dispatch(getCountryId(id));
