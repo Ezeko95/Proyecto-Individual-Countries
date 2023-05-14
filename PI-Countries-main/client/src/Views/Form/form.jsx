@@ -7,9 +7,6 @@ import style from "./form.module.css";
 export default function Form() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
-  let sorting = useSelector((state) => state.sorting);
-
-  let countriesSorted = countries.sort((a, b) => a.name.localeCompare(b.name));
 
   const [activity, setActivity] = useState({
     name: "",
@@ -38,10 +35,30 @@ export default function Form() {
     }
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
-    axios.post("http://localhost:3001/activities", activity);
+    if (
+      !activity.name ||
+      !activity.difficulty ||
+      !activity.duration ||
+      !activity.season ||
+      activity.country.length === 0
+    ) {
+      alert("Los campos nos pueden estar incompletos");
+      return;
+    }
+    try {
+      await axios.post("http://localhost:3001/activities", activity);
+      alert("Actividad creada exitósamente");
+    } catch (error) {
+      alert("Hubo un error al crear la actividad");
+      console.error(error);
+    }
   };
+
+  const sortedCountries = countries.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 
   return (
     <div className={style.formContainer}>
@@ -58,35 +75,54 @@ export default function Form() {
         </div>
         <div>
           <label>Dificultad: </label>
-          <input
-            type="number"
-            value={activity.difficulty}
-            onChange={changeHandler}
-            name="difficulty"
-          />
+          <select name="difficulty" onChange={changeHandler}>
+            <option value="">--Select Difficulty--</option>
+            <option value="1">⭐ ☆ ☆ ☆ ☆</option>
+            <option value="2">⭐⭐ ☆ ☆ ☆</option>
+            <option value="3">⭐⭐⭐ ☆ ☆</option>
+            <option value="4">⭐⭐⭐⭐ ☆</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+          </select>
         </div>
         <div>
           <label>Duración: </label>
           <input
-            type="text"
+            type="number"
             value={activity.duration}
             onChange={changeHandler}
             name="duration"
+            min={1}
+            max={5}
           />
         </div>
         <div>
           <label>Temporadas: </label>
-          <input
-            type="text"
-            value={activity.season}
-            onChange={changeHandler}
-            name="season"
-          />
+          <select name="season" onChange={changeHandler}>
+            <option value="">--Select Season--</option>
+            <option value="Summer">Summer</option>
+            <option value="Autumn">Autumn</option>
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+          </select>
         </div>
         <div>
           <label>Paises: </label>
-          <select name="country" onChange={handleSelect} />
-          <option value="countries">--Elegir países--</option>
+          <select name="country" onChange={handleSelect}>
+            <option value="">--Elegir países--</option>
+            {countries.map((country) => (
+              <option key={country.id} value={country.name}>
+                {country.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label>Países seleccionados:</label>
+          <ul>
+            {activity.country.map((selectedCountry, index) => (
+              <li key={index}>{selectedCountry}</li>
+            ))}
+          </ul>
         </div>
         <div>
           <input type="submit" value="submit" />

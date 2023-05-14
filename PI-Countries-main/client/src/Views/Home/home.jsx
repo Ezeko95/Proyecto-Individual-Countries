@@ -8,7 +8,7 @@ import style from "./home.module.css";
 export default function Home() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
-
+  const [selectedContinent, setSelectedContinent] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
 
@@ -16,14 +16,17 @@ export default function Home() {
     dispatch(getCountries());
   }, [dispatch]);
 
-  ////////////////////////////pagintation/////////////////////////////////////////
+  const filteredCountries = selectedContinent
+    ? countries.filter((country) => country.continent === selectedContinent)
+    : countries;
 
-  const totalPages = Math.ceil(countries.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
 
-  const paginateCountries = countries.slice(
+  const paginateCountries = filteredCountries.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
   const goToPreviousPage = () => {
     setCurrentPage(currentPage - 1);
   };
@@ -32,9 +35,27 @@ export default function Home() {
     setCurrentPage(currentPage + 1);
   };
 
+  const handleContinentChange = (event) => {
+    setSelectedContinent(event.target.value);
+    setCurrentPage(1); // Reset current page when changing the continent filter
+  };
+
   return (
     <>
       <NavBar />
+
+      <div className={style.filter}>
+        <label>Filter by Continent: </label>
+        <select value={selectedContinent} onChange={handleContinentChange}>
+          <option value="">All</option>
+          <option value="Africa">Africa</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="North America">North America</option>
+          <option value="Oceania">Oceania</option>
+          <option value="South America">South America</option>
+        </select>
+      </div>
 
       {/* Paginacion */}
 
