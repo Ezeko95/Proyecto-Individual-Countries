@@ -7,13 +7,16 @@ import style from "./form.module.css";
 export default function Form() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
+  let sorting = useSelector((state) => state.sorting);
+
+  let countriesSorted = countries.sort((a, b) => a.name.localeCompare(b.name));
 
   const [activity, setActivity] = useState({
     name: "",
     difficulty: "",
     duration: "",
     season: "",
-    countries: [],
+    country: [],
   });
 
   const changeHandler = (event) => {
@@ -25,6 +28,15 @@ export default function Form() {
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
+
+  const handleSelect = (event) => {
+    if (event.target.value !== "countries") {
+      setActivity({
+        ...activity,
+        country: [...activity.country, event.target.value],
+      });
+    }
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -73,6 +85,8 @@ export default function Form() {
         </div>
         <div>
           <label>Paises: </label>
+          <select name="country" onChange={handleSelect} />
+          <option value="countries">--Elegir países--</option>
         </div>
         <div>
           <input type="submit" value="submit" />

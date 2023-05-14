@@ -5,7 +5,7 @@ export default function Card({ id, name, flag, continent }) {
   return (
     <Link to={`/detail/${id}`}>
       <div className={style.card}>
-        <img src={flag} alt="flag" height="130" width="230" />
+        <img src={flag} alt="flag" height="200" width="320" />
         <div className={style.container}>
           <h4>
             <b>{name}</b>

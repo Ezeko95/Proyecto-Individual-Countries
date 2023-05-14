@@ -1,23 +1,45 @@
-import { Link } from "react-router-dom";
 import style from "./navBar.module.css";
-import Search from "../Search/search";
+import { useDispatch } from "react-redux";
+import { getCountryByName } from "../../redux/actions";
+import { useState } from "react";
 
 export default function NavBar() {
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    console.log(search);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (search.length) {
+      dispatch(getCountryByName(search));
+    }
+  };
+
   return (
-    <ul>
-      <Link to={"/form"}>
-        <li>
-          <a href="default.asp" className={style.active}>
-            Create activity
-          </a>
-        </li>
-      </Link>
-      <Link to={"/about"}>
-        <li>
-          <a href="about.asp">About</a>
-        </li>
-      </Link>
-      <Search></Search>
-    </ul>
+    <div className={style.topnav}>
+      <a className={style.active} href="/home">
+        Home
+      </a>
+      <a href="/about">Acerca de</a>
+      <a href="/form">Crear</a>
+      <div className={style.searchContainer}>
+        <form>
+          <input
+            type="text"
+            placeholder="Search.."
+            name="search"
+            value={search}
+            autoComplete="on"
+            onChange={handleSearch}
+          />
+          <button type="submit" onClick={handleSubmit}>
+            Buscar
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }

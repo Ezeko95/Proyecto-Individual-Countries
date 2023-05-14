@@ -1,36 +1,23 @@
+import { useNavigate } from "react-router-dom";
 import style from "./search.module.css";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { getCountryByName } from "../../redux/actions";
 
 export default function Search() {
-  const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-    console.log(search);
-  };
-  const handleSubmit = () => {
-    if (search.length) {
-      dispatch(getCountryByName(search));
-      document.getElementById("search").value = "";
-    }
+  const handleClick = (e) => {
+    navigate("/results");
   };
   return (
     <div>
-      <div>
+      <div className={style.searchContainer}>
         <input
-          id="search"
-          type="search"
+          type="text"
+          placeholder="Search.."
           name="search"
-          placeholder="Search..."
-          onChange={(event) => handleSearch(event)}
-          value={search}
           autoComplete="on"
         />
-        <button type="submit" onClick={(event) => handleSubmit(event)}>
-          Search
+        <button type="submit" onClick={handleClick}>
+          Buscar
         </button>
       </div>
     </div>

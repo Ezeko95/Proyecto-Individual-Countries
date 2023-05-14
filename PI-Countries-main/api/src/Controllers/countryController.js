@@ -28,7 +28,16 @@ const getCountriesByName = async (name) => {
 };
 
 const getCountriesById = async (id) => {
-  return await Country.findOne({ where: { id } });
+  return await Country.findOne({
+    where: { id },
+    include: [
+      {
+        model: Activity,
+        attributes: ["name", "difficulty", "duration", "season"],
+        through: { attributes: [] },
+      },
+    ],
+  });
 };
 
 module.exports = { getCountriesByName, getCountriesById, getAllCountries };
