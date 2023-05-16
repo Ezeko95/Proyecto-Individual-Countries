@@ -1,5 +1,5 @@
 // const createActivity = require("../Controllers/activityController.js");
-const { Activity } = require("../db");
+const { Activity, Country } = require("../db");
 
 const activityPostHandler = async (req, res) => {
   const { name, difficulty, duration, season, country } = req.body;
@@ -10,8 +10,15 @@ const activityPostHandler = async (req, res) => {
       difficulty,
       duration,
       season,
-      country,
     });
+    if (Array.isArray(country)) {
+      for (let countryId of country) {
+        const countryObj = await Country.findByPk(countryId);
+        if (countryObj) {
+          await newActivity.addCountry(countryObj);
+        }
+      }
+    }
     res.status(200).send(newActivity);
   } catch (error) {
     console.error("Error ocurred while creating activity", error);

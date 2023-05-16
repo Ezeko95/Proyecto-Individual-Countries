@@ -12,7 +12,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState(""); // Track the sort order
   const itemsPerPage = 15;
-
+  console.log(countries);
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);

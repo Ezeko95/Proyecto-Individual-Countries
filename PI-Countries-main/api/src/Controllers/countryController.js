@@ -1,4 +1,3 @@
-const axios = require("axios");
 const { Op } = require("sequelize");
 const { Country, Activity } = require("../db");
 
@@ -33,7 +32,7 @@ const getCountriesById = async (id) => {
     include: [
       {
         model: Activity,
-        attributes: ["name", "difficulty", "duration", "season"],
+        attributes: ["name", "difficulty", "duration", "season", "country"],
         through: { attributes: [] },
       },
     ],

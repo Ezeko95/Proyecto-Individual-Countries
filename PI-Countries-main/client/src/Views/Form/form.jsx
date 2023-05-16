@@ -3,9 +3,11 @@ import { getCountries } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import style from "./form.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Form() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const countries = useSelector((state) => state.countries);
 
   const [activity, setActivity] = useState({
@@ -15,11 +17,17 @@ export default function Form() {
     season: "",
     country: [],
   });
-
+  const [errors, setErrors] = useState({
+    name: "",
+    difficulty: "",
+    duration: "",
+    season: "",
+  });
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
     setActivity({ ...activity, [property]: value });
+    setErrors({ ...errors, [property]: value });
   };
 
   useEffect(() => {
@@ -55,28 +63,41 @@ export default function Form() {
       console.error(error);
     }
   };
+  const handleClick = () => {
+    navigate("/home");
+  };
 
   const sortedCountries = countries.sort((a, b) =>
     a.name.localeCompare(b.name)
   );
-  console.log(activity.country);
 
   return (
-    <div className={style.formContainer}>
-      <h1>Creá tu personaje</h1>
-      <form onSubmit={submitHandler}>
-        <div>
+    <div className={style.div}>
+      <div className={style.topnav}>
+        <a className={style.active} onClick={handleClick}>
+          Home
+        </a>
+      </div>
+      <h1 className={style.h1}>Creá tu actividad</h1>
+      <form onSubmit={submitHandler} className={style.formContainer}>
+        <div className={style.div}>
           <label>Nombre: </label>
           <input
             type="text"
             value={activity.name}
             onChange={changeHandler}
             name="name"
+            className={style.input}
           />
         </div>
-        <div>
+        <div className={style.div}>
           <label>Dificultad: </label>
-          <select name="difficulty" onChange={changeHandler}>
+          <select
+            id="country"
+            name="difficulty"
+            onChange={changeHandler}
+            className={style.select}
+          >
             <option value="">--Select Difficulty--</option>
             <option value="1">⭐ ☆ ☆ ☆ ☆</option>
             <option value="2">⭐⭐ ☆ ☆ ☆</option>
@@ -85,9 +106,10 @@ export default function Form() {
             <option value="5">⭐⭐⭐⭐⭐</option>
           </select>
         </div>
-        <div>
-          <label>Duración: </label>
+        <div className={style.div}>
+          <label>Duración (hs): </label>
           <input
+            className={style.input}
             type="number"
             value={activity.duration}
             onChange={changeHandler}
@@ -96,9 +118,14 @@ export default function Form() {
             max={5}
           />
         </div>
-        <div>
+        <div className={style.div}>
           <label>Temporadas: </label>
-          <select name="season" onChange={changeHandler}>
+          <select
+            id="country"
+            name="season"
+            onChange={changeHandler}
+            className={style.select}
+          >
             <option value="">--Select Season--</option>
             <option value="Summer">Summer</option>
             <option value="Autumn">Autumn</option>
@@ -106,18 +133,22 @@ export default function Form() {
             <option value="Spring">Spring</option>
           </select>
         </div>
-        <div>
+        <div className={style.div}>
           <label>Paises: </label>
-          <select name="country" onChange={handleSelect}>
+          <select
+            name="country"
+            onChange={handleSelect}
+            className={style.select}
+          >
             <option value="">--Elegir países--</option>
             {countries.map((country) => (
-              <option key={country.id} value={country.name}>
+              <option id="country" key={country.id} value={country.id}>
                 {country.name}
               </option>
             ))}
           </select>
         </div>
-        <div>
+        <div className={style.div}>
           <label>Países seleccionados:</label>
           <ul>
             {activity.country.map((selectedCountry, index) => (
@@ -125,8 +156,8 @@ export default function Form() {
             ))}
           </ul>
         </div>
-        <div>
-          <input type="submit" value="submit" />
+        <div className={style.div}>
+          <input type="submit" value="submit" className={style.submit} />
         </div>
       </form>
     </div>

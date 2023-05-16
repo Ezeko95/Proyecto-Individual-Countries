@@ -4,6 +4,10 @@
   align-items: center;
   flex-direction: column;
   background-color: rgba(128, 128, 128, 0.548);
+  border: 15px solid green;
+}
+.div {
+  padding: 0;
 }
 
 .title {
@@ -18,4 +22,30 @@
 
 .columnLeft {
   margin-right: 100px;
+}
+
+/* /////////////TOP NAV////////////// */
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196f3;
+  color: white;
 }

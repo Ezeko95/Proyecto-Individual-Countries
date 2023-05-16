@@ -1,23 +1,31 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCountryId } from "../../redux/actions";
 import React from "react";
-import NavBar from "../../Components/NavBar/navBar";
 import style from "./detail.module.css";
 
 export default function Detail() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let { id } = useParams();
   const countryDetail = useSelector((state) => state.countryDetail);
-  console.log(countryDetail);
 
   useEffect(() => {
     dispatch(getCountryId(id));
   }, [dispatch, id]);
+
+  const handleClick = () => {
+    navigate("/home");
+  };
+
   return (
     <div>
-      <NavBar />
+      <div className={style.topnav}>
+        <a className={style.active} onClick={handleClick}>
+          Home
+        </a>
+      </div>
       {countryDetail ? (
         <>
           <div className={style.detailContainer}>
@@ -40,6 +48,22 @@ export default function Detail() {
                 <h2>Área: {countryDetail.area}km</h2>
                 <h2>Población: {countryDetail.population}</h2>
               </div>
+            </div>
+            <div className={style.activities}>
+              <h2>Activities:</h2>
+              {countryDetail.activities &&
+              countryDetail.activities.length > 0 ? (
+                countryDetail.activities.map((activity) => (
+                  <div key={activity.id}>
+                    <h3>{activity.name}</h3>
+                    <p>Difficulty: {activity.difficulty}</p>
+                    <p>Duration: {activity.duration}</p>
+                    <p>Season: {activity.season}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No activities found.</p>
+              )}
             </div>
           </div>
         </>
