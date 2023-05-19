@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const { Country, Activity } = require("../db");
+const axios = require("axios");
 
 const getAllCountries = async () => {
   return await Country.findAll({
