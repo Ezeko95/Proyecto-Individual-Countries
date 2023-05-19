@@ -58,7 +58,7 @@ export default function Form() {
       return;
     }
     try {
-      await axios.post("http://localhost:3001/activities", activity);
+      await axios.post("/activities", activity);
       alert("Actividad creada exitósamente");
     } catch (error) {
       alert("Hubo un error al crear la actividad");

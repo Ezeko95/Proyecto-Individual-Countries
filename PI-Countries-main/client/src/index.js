@@ -7,8 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import axios from "axios";
 
-// axios.defaults.baseURL = "https://countries-pvzp.onrender.com";
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL =
+  "https://proyecto-individual-countries-production-0b07.up.railway.app";
+
+// axios.defaults.baseURL = "http://localhost:3001";
 
 ReactDOM.render(
   <Provider store={store}>
