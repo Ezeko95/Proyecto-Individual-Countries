@@ -12,8 +12,7 @@ export default function Home() {
   const [selectedContinent, setSelectedContinent] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("");
-  const itemsPerPage = 15;
-  console.log(countries);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     dispatch(getCountries());
@@ -85,12 +84,16 @@ export default function Home() {
         <label>Filter by Activity: </label>
         <select value={selectedActivity} onChange={handleActivityChange}>
           <option value="">All Activities</option>
-          {countries.map((country) =>
-            country.activities.map((activity) => (
-              <option key={activity.name} value={activity.name}>
-                {activity.name}
-              </option>
-            ))
+          {countries ? (
+            countries.map((country) =>
+              country.activities.map((activity) => (
+                <option key={activity.name} value={activity.name}>
+                  {activity.name}
+                </option>
+              ))
+            )
+          ) : (
+            <h1>loading...</h1>
           )}
         </select>
 
@@ -126,17 +129,21 @@ export default function Home() {
       </div>
 
       <div className={style.container}>
-        {paginateCountries.map((country) => {
-          return (
-            <Card
-              key={country.id}
-              id={country.id}
-              name={country.name}
-              flag={country.flag}
-              continent={country.continent}
-            />
-          );
-        })}
+        {paginateCountries ? (
+          paginateCountries.map((country) => {
+            return (
+              <Card
+                key={country.id}
+                id={country.id}
+                name={country.name}
+                flag={country.flag}
+                continent={country.continent}
+              />
+            );
+          })
+        ) : (
+          <h1>loading...</h1>
+        )}
       </div>
     </>
   );
