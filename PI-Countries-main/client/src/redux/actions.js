@@ -35,10 +35,11 @@ export const cleanDetail = () => {
   return { type: CLEAN_DETAIL };
 };
 
-export const getActivities = () => {
-  return async function (dispatch) {
-    const response = await axios.get("http://localhost:3001/activities");
-
-    dispatch({ type: GET_ACTIVITIES, payload: response.data });
-  };
+export const getActivities = () => async (dispatch) => {
+  try {
+    let json = await axios.get("http://localhost:3001/activities");
+    return dispatch({ type: GET_ACTIVITIES, payload: json.data });
+  } catch (error) {
+    console.log(error.message);
+  }
 };

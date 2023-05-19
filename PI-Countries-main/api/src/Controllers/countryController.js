@@ -16,6 +16,12 @@ const getAllCountries = async () => {
 const getCountriesByName = async (name) => {
   return await Country.findAll({
     where: { name: { [Op.iLike]: `%${name}%` } },
+  });
+};
+
+const getCountriesById = async (id) => {
+  return await Country.findOne({
+    where: { id },
     include: [
       {
         model: Activity,
@@ -26,21 +32,9 @@ const getCountriesByName = async (name) => {
   });
 };
 
-const getCountriesById = async (id) => {
-  return await Country.findOne({
-    where: { id },
-    include: [
-      {
-        model: Activity,
-        attributes: ["name", "difficulty", "duration", "season", "country"],
-        through: { attributes: [] },
-      },
-    ],
-  });
-};
-
 module.exports = { getCountriesByName, getCountriesById, getAllCountries };
 
+// ***********************// getCountriesAPI //********************************//
 // const getAllCountries = async () => {
 //   const apiResponse = await axios.get("https://restcountries.com/v3/all");
 //   const countries = apiResponse.data.map((country) => ({

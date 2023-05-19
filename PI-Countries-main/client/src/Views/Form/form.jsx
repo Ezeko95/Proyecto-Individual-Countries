@@ -17,12 +17,14 @@ export default function Form() {
     season: "",
     country: [],
   });
+  console.log(activity);
   const [errors, setErrors] = useState({
     name: "",
     difficulty: "",
     duration: "",
     season: "",
   });
+
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;

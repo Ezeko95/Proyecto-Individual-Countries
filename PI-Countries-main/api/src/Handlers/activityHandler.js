@@ -1,8 +1,9 @@
-// const createActivity = require("../Controllers/activityController.js");
+// const activityPost = require("../Controllers/activityController.js");
 const { Activity, Country } = require("../db");
 
 const activityPostHandler = async (req, res) => {
   const { name, difficulty, duration, season, country } = req.body;
+  console.log(country);
 
   try {
     let newActivity = await Activity.create({
@@ -11,14 +12,9 @@ const activityPostHandler = async (req, res) => {
       duration,
       season,
     });
-    if (Array.isArray(country)) {
-      for (let countryId of country) {
-        const countryObj = await Country.findByPk(countryId);
-        if (countryObj) {
-          await newActivity.addCountry(countryObj);
-        }
-      }
-    }
+    let countryNames = await Country.findAll({ where: { id: country } });
+    newActivity.addCountry(countryNames);
+
     res.status(200).send(newActivity);
   } catch (error) {
     console.error("Error ocurred while creating activity", error);
@@ -30,7 +26,18 @@ const activityPostHandler = async (req, res) => {
 
 const activityHandler = async (req, res) => {
   try {
-    const activity = await Activity.findAll();
+    const activity = await Activity.findAll({
+      include: [
+        {
+          model: Country,
+          attributes: ["id"],
+          through: {
+            model: "country_activity", // Replace with the actual name of your intermediate table
+            attributes: ["countryId"], // Include the desired attributes of the intermediate table here
+          },
+        },
+      ],
+    });
     res.status(200).send(activity);
   } catch (error) {
     console.error("Error ocurred while fetching activity", error);

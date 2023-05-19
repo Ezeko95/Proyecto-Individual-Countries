@@ -1,6 +1,6 @@
 import Card from "../../Components/Card/card";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, getCountryByName } from "../../redux/actions";
+import { getCountries } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import NavBar from "../../Components/NavBar/navBar";
 import style from "./home.module.css";
@@ -8,20 +8,35 @@ import style from "./home.module.css";
 export default function Home() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
+  const [selectedActivity, setSelectedActivity] = useState("");
   const [selectedContinent, setSelectedContinent] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState(""); // Track the sort order
+  const [sortOrder, setSortOrder] = useState("");
   const itemsPerPage = 15;
   console.log(countries);
+
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
+
+  const handleActivityChange = (event) => {
+    setSelectedActivity(event.target.value);
+    setCurrentPage(1);
+  };
 
   const filteredCountries = selectedContinent
     ? countries.filter((country) => country.continent === selectedContinent)
     : countries;
 
-  const sortedCountries = sortCountries(filteredCountries, sortOrder);
+  const filteredCountriesByActivity = selectedActivity
+    ? filteredCountries.filter((country) =>
+        country.activities.some(
+          (activity) => activity.name === selectedActivity
+        )
+      )
+    : filteredCountries;
+
+  const sortedCountries = sortCountries(filteredCountriesByActivity, sortOrder);
 
   const totalPages = Math.ceil(sortedCountries.length / itemsPerPage);
 
@@ -67,6 +82,18 @@ export default function Home() {
       <NavBar />
 
       <div className={style.filter}>
+        <label>Filter by Activity: </label>
+        <select value={selectedActivity} onChange={handleActivityChange}>
+          <option value="">All Activities</option>
+          {countries.map((country) =>
+            country.activities.map((activity) => (
+              <option key={activity.name} value={activity.name}>
+                {activity.name}
+              </option>
+            ))
+          )}
+        </select>
+
         <label>Filter by Continent: </label>
         <select value={selectedContinent} onChange={handleContinentChange}>
           <option value="">Todos</option>
