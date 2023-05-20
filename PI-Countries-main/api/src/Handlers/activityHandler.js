@@ -1,5 +1,5 @@
 const {
-  getActivity,
+  getActivities,
   postActivity,
 } = require("../Controllers/activityController.js");
 
@@ -25,7 +25,7 @@ const activityPostHandler = async (req, res) => {
 
 const activityHandler = async (req, res) => {
   try {
-    const activity = await getActivity();
+    const activity = await getActivities();
     res.status(200).send(activity);
   } catch (error) {
     console.error("Error ocurred while fetching activity", error);

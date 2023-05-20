@@ -1,6 +1,6 @@
 import Card from "../../Components/Card/card";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries } from "../../redux/actions";
+import { getActivities, getCountries } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import NavBar from "../../Components/NavBar/navBar";
 import style from "./home.module.css";
@@ -8,6 +8,7 @@ import style from "./home.module.css";
 export default function Home() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
+  const activities = useSelector((state) => state.activities);
   const [selectedActivity, setSelectedActivity] = useState("");
   const [selectedContinent, setSelectedContinent] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,6 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getCountries());
+    dispatch(getActivities());
   }, [dispatch]);
 
   const handleActivityChange = (event) => {
@@ -77,27 +79,25 @@ export default function Home() {
         return countries;
     }
   }
-  console.log(countries);
+  console.log(activities);
   return (
     <>
       <NavBar />
 
       <div className={style.filter}>
-        {/* <label>Filter by Activity: </label>
+        <label>Filter by Activity: </label>
         <select value={selectedActivity} onChange={handleActivityChange}>
           <option value="">All Activities</option>
-          {countries ? (
-            countries.map((country) =>
-              country.activities.map((activity) => (
-                <option key={activity.name} value={activity.name}>
-                  {activity.name}
-                </option>
-              ))
-            )
+          {activities ? (
+            activities.map((activity) => (
+              <option key={activity.name} value={activity.name}>
+                {activity.name}
+              </option>
+            ))
           ) : (
             <h1>loading...</h1>
           )}
-        </select> */}
+        </select>
 
         <label>Filter by Continent: </label>
         <select value={selectedContinent} onChange={handleContinentChange}>

@@ -24,7 +24,9 @@ const postActivity = async ({
 };
 
 const getActivities = async () => {
-  const activity = await Activity.findAll();
+  const activity = await Activity.findAll({
+    include: [{ model: Country, attributes: ["name"] }],
+  });
   return activity;
 };
 
