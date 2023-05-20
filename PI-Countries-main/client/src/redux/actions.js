@@ -19,6 +19,7 @@ export const getCountryByName = (name) => {
   return async function (dispatch) {
     const response = await axios.get(`/countries?name=${name}`);
     dispatch({ type: GET_COUNTRY_BY_NAME, payload: response.data });
+    console.log(response);
   };
 };
 

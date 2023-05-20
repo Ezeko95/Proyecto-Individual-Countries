@@ -39,10 +39,12 @@ export default function Home() {
 
   const totalPages = Math.ceil(sortedCountries.length / itemsPerPage);
 
-  const paginateCountries = sortedCountries.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const paginateCountries = sortedCountries
+    ? sortedCountries.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      )
+    : [];
 
   const goToPreviousPage = () => {
     setCurrentPage(currentPage - 1);
@@ -75,13 +77,13 @@ export default function Home() {
         return countries;
     }
   }
-
+  console.log(countries);
   return (
     <>
       <NavBar />
 
       <div className={style.filter}>
-        <label>Filter by Activity: </label>
+        {/* <label>Filter by Activity: </label>
         <select value={selectedActivity} onChange={handleActivityChange}>
           <option value="">All Activities</option>
           {countries ? (
@@ -95,7 +97,7 @@ export default function Home() {
           ) : (
             <h1>loading...</h1>
           )}
-        </select>
+        </select> */}
 
         <label>Filter by Continent: </label>
         <select value={selectedContinent} onChange={handleContinentChange}>
@@ -116,8 +118,6 @@ export default function Home() {
           <option value="descPopulation">Población (Mayor a Menor)</option>
         </select>
       </div>
-
-      {/* Paginacion */}
 
       <div className={style.pages}>
         <button disabled={currentPage === 1} onClick={goToPreviousPage}>
