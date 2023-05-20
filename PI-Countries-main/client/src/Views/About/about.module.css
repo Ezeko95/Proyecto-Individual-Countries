@@ -1,3 +1,11 @@
+.background {
+  background-image: url("../../assets/travel-background-with-airplane-and-sky-with-cloud-illustration-free-vector.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  min-height: 100vh;
+}
 .topnav {
   overflow: hidden;
   background-color: #e9e9e9;

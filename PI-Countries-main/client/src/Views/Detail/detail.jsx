@@ -20,7 +20,7 @@ export default function Detail() {
   };
 
   return (
-    <div>
+    <div className={style.background}>
       <div className={style.topnav}>
         <a className={style.active} onClick={handleClick}>
           Home

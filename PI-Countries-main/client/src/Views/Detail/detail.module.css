@@ -1,10 +1,16 @@
+.background {
+  background-image: url("../../assets/travel-background-with-airplane-and-sky-with-cloud-illustration-free-vector.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  min-height: 100vh;
+}
 .detailContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: rgba(128, 128, 128, 0.548);
-  border: 15px solid green;
 }
 .div {
   padding: 0;

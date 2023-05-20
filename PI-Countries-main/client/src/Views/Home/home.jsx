@@ -82,67 +82,68 @@ export default function Home() {
   return (
     <>
       <NavBar />
+      <div className={style.background}>
+        <div className={style.filter}>
+          <label>Filtrar por actividad: </label>
+          <select value={selectedActivity} onChange={handleActivityChange}>
+            <option value="">--Todos--</option>
+            {activities ? (
+              activities.map((activity) => (
+                <option key={activity.name} value={activity.name}>
+                  {activity.name}
+                </option>
+              ))
+            ) : (
+              <h1>loading...</h1>
+            )}
+          </select>
 
-      <div className={style.filter}>
-        <label>Filtrar por actividad: </label>
-        <select value={selectedActivity} onChange={handleActivityChange}>
-          <option value="">--Todos--</option>
-          {activities ? (
-            activities.map((activity) => (
-              <option key={activity.name} value={activity.name}>
-                {activity.name}
-              </option>
-            ))
+          <label>Filtrar por continente: </label>
+          <select value={selectedContinent} onChange={handleContinentChange}>
+            <option value="">Todos</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europa</option>
+            <option value="North America">America del Norte</option>
+            <option value="Oceania">Oceania</option>
+            <option value="South America">America del sur</option>
+          </select>
+          <label>Ordenar por: </label>
+          <select value={sortOrder} onChange={handleSortChange}>
+            <option value="">--Ordenar--</option>
+            <option value="ascName">Nombre (A-Z)</option>
+            <option value="descName">Nombre (Z-A)</option>
+            <option value="ascPopulation">Población (Menor a Mayor)</option>
+            <option value="descPopulation">Población (Mayor a Menor)</option>
+          </select>
+        </div>
+
+        <div className={style.pages}>
+          <button disabled={currentPage === 1} onClick={goToPreviousPage}>
+            Previous
+          </button>
+          <button disabled={currentPage === totalPages} onClick={goToNextPage}>
+            Next
+          </button>
+        </div>
+
+        <div className={style.container}>
+          {paginateCountries ? (
+            paginateCountries.map((country) => {
+              return (
+                <Card
+                  key={country.id}
+                  id={country.id}
+                  name={country.name}
+                  flag={country.flag}
+                  continent={country.continent}
+                />
+              );
+            })
           ) : (
             <h1>loading...</h1>
           )}
-        </select>
-
-        <label>Filtrar por continente: </label>
-        <select value={selectedContinent} onChange={handleContinentChange}>
-          <option value="">Todos</option>
-          <option value="Africa">Africa</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europa</option>
-          <option value="North America">America del Norte</option>
-          <option value="Oceania">Oceania</option>
-          <option value="South America">America del sur</option>
-        </select>
-        <label>Ordenar por: </label>
-        <select value={sortOrder} onChange={handleSortChange}>
-          <option value="">--Ordenar--</option>
-          <option value="ascName">Nombre (A-Z)</option>
-          <option value="descName">Nombre (Z-A)</option>
-          <option value="ascPopulation">Población (Menor a Mayor)</option>
-          <option value="descPopulation">Población (Mayor a Menor)</option>
-        </select>
-      </div>
-
-      <div className={style.pages}>
-        <button disabled={currentPage === 1} onClick={goToPreviousPage}>
-          Previous
-        </button>
-        <button disabled={currentPage === totalPages} onClick={goToNextPage}>
-          Next
-        </button>
-      </div>
-
-      <div className={style.container}>
-        {paginateCountries ? (
-          paginateCountries.map((country) => {
-            return (
-              <Card
-                key={country.id}
-                id={country.id}
-                name={country.name}
-                flag={country.flag}
-                continent={country.continent}
-              />
-            );
-          })
-        ) : (
-          <h1>loading...</h1>
-        )}
+        </div>
       </div>
     </>
   );
