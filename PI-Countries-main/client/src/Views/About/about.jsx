@@ -1,17 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import style from "./about.module.css";
 
 export default function About() {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/home");
-  };
-
   return (
     <div className={style.background}>
       <div className={style.topnav}>
-        <a className={style.active} onClick={handleClick}>
+        <a className={style.active} href="/home">
           Home
         </a>
       </div>

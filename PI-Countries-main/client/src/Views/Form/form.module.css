@@ -6,25 +6,6 @@
   width: 100%;
   min-height: 100vh;
 }
-.formContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-input[type="text"],
-.select {
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.h1 {
-  display: flex;
-  align-items: center;
-}
 .topnav {
   overflow: hidden;
   background-color: #e9e9e9;
@@ -48,6 +29,25 @@ input[type="text"],
 .topnav a.active {
   background-color: #2196f3;
   color: white;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input[type="text"],
+.select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.h1 {
+  display: flex;
+  align-items: center;
 }
 
 .submit {

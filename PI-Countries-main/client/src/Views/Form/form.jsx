@@ -3,11 +3,9 @@ import { getCountries } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import style from "./form.module.css";
-import { useNavigate } from "react-router-dom";
 
 export default function Form() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const countries = useSelector((state) => state.countries);
 
   const [activity, setActivity] = useState({
@@ -55,9 +53,6 @@ export default function Form() {
       console.error(error);
     }
   };
-  const handleClick = () => {
-    navigate("/home");
-  };
 
   const sortedCountries = countries.sort((a, b) =>
     a.name.localeCompare(b.name)
@@ -65,12 +60,12 @@ export default function Form() {
 
   return (
     <div className={style.background}>
+      <div className={style.topnav}>
+        <a className={style.active} href="/home">
+          Home
+        </a>
+      </div>
       <div className={style.div}>
-        <div className={style.topnav}>
-          <a className={style.active} onClick={handleClick}>
-            Home
-          </a>
-        </div>
         <h1 className={style.h1}>Creá tu actividad</h1>
         <form onSubmit={submitHandler} className={style.formContainer}>
           <div className={style.div}>
