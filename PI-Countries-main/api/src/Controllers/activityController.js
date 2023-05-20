@@ -1,4 +1,5 @@
 const { Activity, Country } = require("../db");
+const { Op } = require("sequelize");
 
 const postActivity = async ({
   name,
@@ -30,4 +31,10 @@ const getActivities = async () => {
   return activity;
 };
 
-module.exports = { getActivities, postActivity };
+const getActivityByName = async (name) => {
+  return await Activity.findOne({
+    where: { name: { [Op.iLike]: `%${name}%` } },
+  });
+};
+
+module.exports = { getActivities, postActivity, getActivityByName };

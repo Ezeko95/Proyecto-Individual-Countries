@@ -1,6 +1,7 @@
 const {
   getActivities,
   postActivity,
+  getActivityByName,
 } = require("../Controllers/activityController.js");
 
 const activityPostHandler = async (req, res) => {
@@ -24,9 +25,16 @@ const activityPostHandler = async (req, res) => {
 };
 
 const activityHandler = async (req, res) => {
+  const { name } = req.query;
+
   try {
-    const activity = await getActivities();
-    res.status(200).send(activity);
+    let results;
+    if (name) {
+      results = await getActivityByName(name);
+    } else {
+      results = await getActivities();
+    }
+    res.status(200).send(results);
   } catch (error) {
     console.error("Error ocurred while fetching activity", error);
     res

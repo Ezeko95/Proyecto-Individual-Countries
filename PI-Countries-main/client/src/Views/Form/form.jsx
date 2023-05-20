@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCountries } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { validateActivityName } from "./validate";
 import axios from "axios";
 import style from "./form.module.css";
 import { useNavigate } from "react-router-dom";
@@ -47,22 +48,14 @@ export default function Form() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    if (
-      !activity.name ||
-      !activity.difficulty ||
-      !activity.duration ||
-      !activity.season ||
-      activity.country.length === 0
-    ) {
-      alert("Los campos nos pueden estar incompletos");
-      return;
-    }
-    try {
-      await axios.post("/activities", activity);
-      alert("Actividad creada exitósamente");
-    } catch (error) {
-      alert("Hubo un error al crear la actividad");
-      console.error(error);
+    if (validateActivityName(activity.name)) {
+      try {
+        await axios.post("/activities", activity);
+        alert("Actividad creada exitósamente");
+      } catch (error) {
+        alert("Hubo un error al crear la actividad");
+        console.error(error);
+      }
     }
   };
   const handleClick = () => {

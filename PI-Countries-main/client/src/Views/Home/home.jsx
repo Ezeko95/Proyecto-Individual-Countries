@@ -79,15 +79,14 @@ export default function Home() {
         return countries;
     }
   }
-  console.log(activities);
   return (
     <>
       <NavBar />
 
       <div className={style.filter}>
-        <label>Filter by Activity: </label>
+        <label>Filtrar por actividad: </label>
         <select value={selectedActivity} onChange={handleActivityChange}>
-          <option value="">All Activities</option>
+          <option value="">--Todos--</option>
           {activities ? (
             activities.map((activity) => (
               <option key={activity.name} value={activity.name}>
@@ -99,17 +98,17 @@ export default function Home() {
           )}
         </select>
 
-        <label>Filter by Continent: </label>
+        <label>Filtrar por continente: </label>
         <select value={selectedContinent} onChange={handleContinentChange}>
           <option value="">Todos</option>
           <option value="Africa">Africa</option>
           <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="North America">North America</option>
+          <option value="Europe">Europa</option>
+          <option value="North America">America del Norte</option>
           <option value="Oceania">Oceania</option>
-          <option value="South America">South America</option>
+          <option value="South America">America del sur</option>
         </select>
-        <label>Sort by: </label>
+        <label>Ordenar por: </label>
         <select value={sortOrder} onChange={handleSortChange}>
           <option value="">--Ordenar--</option>
           <option value="ascName">Nombre (A-Z)</option>
