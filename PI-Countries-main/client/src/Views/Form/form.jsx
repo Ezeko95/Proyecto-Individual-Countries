@@ -3,6 +3,7 @@ import { getCountries } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import style from "./form.module.css";
+import validation from "./validate";
 
 export default function Form() {
   const dispatch = useDispatch();
@@ -15,19 +16,20 @@ export default function Form() {
     season: "",
     country: [],
   });
-  console.log(activity);
+
   const [errors, setErrors] = useState({
     name: "",
     difficulty: "",
     duration: "",
     season: "",
   });
+  console.log(activity);
 
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
     setActivity({ ...activity, [property]: value });
-    setErrors({ ...errors, [property]: value });
+    validation({ ...activity, [property]: value }, errors, setErrors);
   };
 
   useEffect(() => {
@@ -77,6 +79,7 @@ export default function Form() {
               name="name"
               className={style.input}
             />
+            <span>{errors.name}</span>
           </div>
           <div className={style.div}>
             <label>Dificultad: </label>
@@ -93,6 +96,7 @@ export default function Form() {
               <option value="4">⭐⭐⭐⭐ ☆</option>
               <option value="5">⭐⭐⭐⭐⭐</option>
             </select>
+            <span>{errors.difficulty}</span>
           </div>
           <div className={style.div}>
             <label>Duración (hs): </label>
@@ -120,6 +124,7 @@ export default function Form() {
               <option value="Winter">Winter</option>
               <option value="Spring">Spring</option>
             </select>
+            <span>{errors.season}</span>
           </div>
           <div className={style.div}>
             <label>Paises: </label>

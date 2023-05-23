@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "CI=false react-scripts build",
-    "test": "jest",
+    "test": "jest ./component.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
