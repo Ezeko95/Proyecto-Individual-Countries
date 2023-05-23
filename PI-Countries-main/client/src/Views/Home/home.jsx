@@ -84,7 +84,11 @@ export default function Home() {
       <NavBar />
       <div className={style.background}>
         <div className={style.filter}>
-          <label>Filtrar por actividad: </label>
+          <label>
+            Filtrar por
+            <br />
+            actividad:{" "}
+          </label>
           <select value={selectedActivity} onChange={handleActivityChange}>
             <option value="">--Todos--</option>
             {activities ? (
@@ -98,7 +102,11 @@ export default function Home() {
             )}
           </select>
 
-          <label>Filtrar por continente: </label>
+          <label>
+            Filtrar por
+            <br />
+            continente:
+          </label>
           <select value={selectedContinent} onChange={handleContinentChange}>
             <option value="">Todos</option>
             <option value="Africa">Africa</option>
@@ -108,7 +116,11 @@ export default function Home() {
             <option value="Oceania">Oceania</option>
             <option value="South America">America del sur</option>
           </select>
-          <label>Ordenar por: </label>
+          <label>
+            Ordenar
+            <br />
+            por:{" "}
+          </label>
           <select value={sortOrder} onChange={handleSortChange}>
             <option value="">--Ordenar--</option>
             <option value="ascName">Nombre (A-Z)</option>

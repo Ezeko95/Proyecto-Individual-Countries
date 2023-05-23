@@ -20,7 +20,6 @@ const postActivity = async ({
       newActivity.addCountry(countryObj);
     }
   }
-
   return newActivity;
 };
 

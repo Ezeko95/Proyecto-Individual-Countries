@@ -35,7 +35,9 @@
   display: flex;
   justify-content: center;
 }
-
+.continent {
+  flex-wrap: wrap;
+}
 .filter label {
   float: right;
   padding: 12px;
@@ -59,12 +61,27 @@
 /* Add media queries for responsiveness */
 @media only screen and (max-width: 600px) {
   /* Adjust container layout for smaller screens */
+  .background {
+    background-size: 100%;
+    background-repeat: repeat;
+  }
   .pages button {
     size: 20px;
   }
   .filter {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .filter label {
+    max-width: 500px;
+    float: right;
+    padding: 12px;
+    margin-top: 10px;
+    background: #a59b9b;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
   }
   .responsiveContainer {
     flex-direction: column;

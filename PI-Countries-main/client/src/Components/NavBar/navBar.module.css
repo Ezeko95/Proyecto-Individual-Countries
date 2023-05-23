@@ -52,9 +52,6 @@
 }
 
 @media screen and (max-width: 600px) {
-  .topnav .search-container {
-    float: none;
-  }
   .topnav a,
   .topnav input[type="text"],
   .topnav .search-container button {
@@ -67,7 +64,8 @@
   }
   .topnav input[type="text"] {
     border: 1px solid #ccc;
-    max-width: 150px;
+    max-width: 200px;
+    display: flex;
   }
 }
 
@@ -88,8 +86,4 @@
     padding: 8px 16px;
     text-decoration: none;
   }
-}
-
-@media screen and (max-width: 1024px) {
-  /* Styles for screens smaller than 1024px */
 }
