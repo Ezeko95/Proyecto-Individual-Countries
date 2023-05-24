@@ -3,6 +3,7 @@ const {
   postActivity,
   getActivityByName,
   activityDeleteAll,
+  activityDeleteById,
 } = require("../Controllers/activityController.js");
 
 const activityPostHandler = async (req, res) => {
@@ -44,10 +45,16 @@ const activityHandler = async (req, res) => {
   }
 };
 
-const activityDeleteHandler = async (req, res) => {
+const activityDeleteHandler = (req, res) => {
+  const { id } = req.params;
   try {
-    await activityDeleteAll();
-    res.status(200).send("Activities deleted successfully");
+    if (id) {
+      activityDeleteById(id);
+      res.status(200).send("Activity deleted successfully");
+    } else {
+      activityDeleteAll();
+      res.status(200).send("Activities deleted successfully");
+    }
   } catch (error) {
     console.error("Not possible to delete activities");
     res.status(400).json({ error: "Failed to delete activities" });

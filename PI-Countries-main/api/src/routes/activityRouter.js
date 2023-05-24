@@ -9,6 +9,6 @@ const activityRouter = Router();
 
 activityRouter.post("/", activityPostHandler);
 activityRouter.get("/", activityHandler);
-activityRouter.delete("/", activityDeleteHandler);
+activityRouter.delete("/:id", activityDeleteHandler);
 
 module.exports = activityRouter;
