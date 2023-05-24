@@ -45,12 +45,12 @@ export default function Detail() {
                 <h2>Población: {countryDetail.population}</h2>
               </div>
             </div>
-            <div className={style.activities}>
-              <h2>Activities:</h2>
+            <h2>Activities:</h2>
+            <div className={style.activitiesContainer}>
               {countryDetail.activities &&
               countryDetail.activities.length > 0 ? (
                 countryDetail.activities.map((activity) => (
-                  <div key={activity.id}>
+                  <div key={activity.id} className={style.activities}>
                     <h3>{activity.name}</h3>
                     <p>Difficulty: {activity.difficulty}</p>
                     <p>Duration: {activity.duration}</p>
@@ -58,7 +58,7 @@ export default function Detail() {
                   </div>
                 ))
               ) : (
-                <p>No activities found.</p>
+                <p>No hay actividades.</p>
               )}
             </div>
           </div>

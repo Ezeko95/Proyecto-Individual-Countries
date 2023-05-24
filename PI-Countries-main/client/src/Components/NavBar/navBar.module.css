@@ -11,6 +11,7 @@
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  margin-right: 20px;
 }
 
 .topnav a:hover {
@@ -29,13 +30,14 @@
 
 .topnav input[type="text"] {
   padding: 6px;
+  padding-right: 150px;
   margin-right: 10px;
   margin-top: 8px;
   font-size: 17px;
   border: none;
 }
 
-.topnav .searchContainer button {
+/* .topnav .searchContainer button {
   border-radius: 3px;
   float: right;
   padding: 6px;
@@ -45,7 +47,7 @@
   font-size: 17px;
   border: none;
   cursor: pointer;
-}
+} */
 
 .topnav .search-container button:hover {
   background: #000000;

@@ -146,7 +146,7 @@ export default function Form() {
             <label>Países seleccionados:</label>
             <ul>
               {activity.country.map((selectedCountry, index) => (
-                <li key={index}>{selectedCountry}</li>
+                <li key={index}>{selectedCountry.name}</li>
               ))}
             </ul>
           </div>
