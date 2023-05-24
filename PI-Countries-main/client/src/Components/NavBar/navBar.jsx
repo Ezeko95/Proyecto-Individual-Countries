@@ -22,6 +22,7 @@ export default function NavBar() {
       <a className={style.active} href="/home">
         Home
       </a>
+      <a href="/activities">Actividades</a>
       <a href="/about">Acerca de</a>
       <a href="/form">Crear</a>
       <div className={style.searchContainer}>

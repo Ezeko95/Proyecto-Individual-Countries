@@ -36,4 +36,13 @@ const getActivityByName = async (name) => {
   });
 };
 
-module.exports = { getActivities, postActivity, getActivityByName };
+const activityDeleteAll = async () => {
+  Activity.destroy({ where: {} });
+};
+
+module.exports = {
+  getActivities,
+  postActivity,
+  getActivityByName,
+  activityDeleteAll,
+};

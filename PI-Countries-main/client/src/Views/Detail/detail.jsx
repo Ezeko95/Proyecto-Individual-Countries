@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getCountryId } from "../../redux/actions";
 import React from "react";
 import style from "./detail.module.css";
 
 export default function Detail() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   let { id } = useParams();
   const countryDetail = useSelector((state) => state.countryDetail);
 
@@ -15,14 +15,10 @@ export default function Detail() {
     dispatch(getCountryId(id));
   }, [dispatch, id]);
 
-  const handleClick = () => {
-    navigate("/home");
-  };
-
   return (
     <div className={style.background}>
       <div className={style.topnav}>
-        <a className={style.active} onClick={handleClick}>
+        <a className={style.active} href="/home">
           Home
         </a>
       </div>

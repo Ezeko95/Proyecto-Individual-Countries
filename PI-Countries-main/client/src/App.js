@@ -1,5 +1,5 @@
 import "./App.css";
-import { Landing, Home, Form, Detail, About } from "./Views";
+import { Landing, Home, Form, Detail, About, Activities } from "./Views";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -15,6 +15,8 @@ function App() {
         <Route path="/about" element={<About />} />
 
         <Route path="/form" element={<Form />} />
+
+        <Route path="/activities" element={<Activities />} />
       </Routes>
     </div>
   );

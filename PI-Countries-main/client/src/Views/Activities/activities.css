@@ -6,6 +6,42 @@
   width: 100%;
   min-height: 100vh;
 }
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin: 10px;
+  background-color: #d9dbe0;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 200px;
+}
+.h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.534);
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+.button {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #e9e9e9;
@@ -29,42 +65,4 @@
 .topnav a.active {
   background-color: #2196f3;
   color: white;
-}
-.formContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-input[type="text"],
-.select {
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.h1 {
-  display: flex;
-  justify-content: center;
-}
-
-.submit {
-  background-color: #4caf50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.submit[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-.div {
-  border-radius: 5px;
-  padding: 20px;
 }
