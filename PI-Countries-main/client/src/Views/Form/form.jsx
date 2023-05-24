@@ -54,6 +54,7 @@ export default function Form() {
       alert("Hubo un error al crear la actividad");
       console.error(error);
     }
+    window.location.reload();
   };
 
   const sortedCountries = countries.sort((a, b) =>

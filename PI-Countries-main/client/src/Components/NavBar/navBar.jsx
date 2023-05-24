@@ -1,9 +1,9 @@
 import style from "./navBar.module.css";
 import { useDispatch } from "react-redux";
-import { getCountryByName } from "../../redux/actions";
+import { getCountries, getCountryByName } from "../../redux/actions";
 import { useState } from "react";
 
-export default function NavBar() {
+export default function NavBar({ setCurrentPage }) {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
@@ -14,6 +14,9 @@ export default function NavBar() {
     event.preventDefault();
     if (search.length) {
       dispatch(getCountryByName(search));
+      setCurrentPage(1);
+    } else if (search.length === 0) {
+      dispatch(getCountries());
     }
   };
 

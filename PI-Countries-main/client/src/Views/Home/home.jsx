@@ -81,7 +81,7 @@ export default function Home() {
   }
   return (
     <>
-      <NavBar />
+      <NavBar setCurrentPage={setCurrentPage}> </NavBar>
       <div className={style.background}>
         <div className={style.filter}>
           <label>
