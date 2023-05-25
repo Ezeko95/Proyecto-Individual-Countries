@@ -20,25 +20,34 @@ export default function NavBar({ setCurrentPage }) {
     setSearch(event.target.value);
   };
 
+  const burger = () => {
+    let x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  };
+
   return (
     <div className={style.topnav}>
       <a className={style.active} href="/home">
         Home
       </a>
-      <a href="/activities">Actividades</a>
-      <a href="/about">Acerca de</a>
-      <a href="/form">Crear</a>
-      <div className={style.searchContainer}>
-        <form>
-          <input
-            type="text"
-            placeholder="Search.."
-            name="search"
-            value={search}
-            onChange={handleSearch}
-          />
-        </form>
+      <div id="#MyLinks" className={style.links}>
+        <a href="/activities">Actividades</a>
+        <a href="/about">Acerca de</a>
+        <a href="/form">Crear</a>
       </div>
+      <form>
+        <input
+          type="text"
+          placeholder="Buscar países..."
+          name="search"
+          value={search}
+          onChange={handleSearch}
+        />
+      </form>
     </div>
   );
 }

@@ -108,7 +108,7 @@ export default function Home() {
             continente:
           </label>
           <select value={selectedContinent} onChange={handleContinentChange}>
-            <option value="">Todos</option>
+            <option value="">--Todos--</option>
             <option value="Africa">Africa</option>
             <option value="Asia">Asia</option>
             <option value="Europe">Europa</option>
@@ -132,10 +132,10 @@ export default function Home() {
 
         <div className={style.pages}>
           <button disabled={currentPage === 1} onClick={goToPreviousPage}>
-            Previous
+            Anterior
           </button>
           <button disabled={currentPage === totalPages} onClick={goToNextPage}>
-            Next
+            Siguiente
           </button>
         </div>
 
