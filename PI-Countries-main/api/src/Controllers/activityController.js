@@ -37,7 +37,7 @@ const getActivityByName = async (name) => {
 };
 
 const activityDeleteAll = () => {
-  Activity.destroy({ where: {} });
+  Activity.destroy();
 };
 
 const activityDeleteById = (id) => {
