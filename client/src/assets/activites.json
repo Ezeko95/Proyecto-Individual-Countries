@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "biking",
+    "difficulty": 3,
+    "duration": 1,
+    "season": "summer",
+    "countries": [
+      ""
+    ]
+  },
+  {
+    "id": 2,
+    "name": "picnicking",
+    "difficulty": 2,
+    "duration": 5,
+    "season": "winter"
+  },
+  {
+    "id": 3,
+    "name": "fishing",
+    "difficulty": 3,
+    "duration": 4,
+    "season": "summer"
+  },
+  {
+    "id": 4,
+    "name": "fishing",
+    "difficulty": 4,
+    "duration": 1,
+    "season": "winter"
+  },
+  {
+    "id": 5,
+    "name": "biking",
+    "difficulty": 3,
+    "duration": 4,
+    "season": "winter"
+  }
+]

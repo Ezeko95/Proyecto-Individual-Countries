@@ -15,15 +15,22 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COUNTRIES:
+      const { payload } = action;
+      const countries = payload.map((country) => ({
+        id: country.cca3,
+        name: country.name.common,
+        flag: country.flags[1],
+        continent: country.continents[0],
+        capital: Array.isArray(country.capital)
+          ? country.capital.join(", ")
+          : country.capital,
+        subregion: country.subregion,
+        area: country.area,
+        population: country.population,
+      }));
       return {
         ...state,
-        countries: action.payload,
-      };
-
-    case GET_COUNTRY_ID:
-      return {
-        ...state,
-        countryDetail: action.payload,
+        countries: countries,
       };
 
     case GET_COUNTRY_BY_NAME:

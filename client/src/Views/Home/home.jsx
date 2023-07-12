@@ -79,6 +79,7 @@ export default function Home() {
         return countries;
     }
   }
+
   return (
     <>
       <NavBar setCurrentPage={setCurrentPage}> </NavBar>
@@ -92,8 +93,8 @@ export default function Home() {
           <select value={selectedActivity} onChange={handleActivityChange}>
             <option value="">--Todos--</option>
             {activities ? (
-              activities.map((activity) => (
-                <option key={activity.name} value={activity.name}>
+              activities.map((activity, index) => (
+                <option key={`${activity.name}-${index}`} value={activity.name}>
                   {activity.name}
                 </option>
               ))

@@ -1,4 +1,5 @@
-import axios from "axios";
+import countryData from "../assets/countries.json";
+import activityData from "../assets/activites.json";
 
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME";
@@ -6,10 +7,10 @@ export const GET_COUNTRY_ID = "GET_COUNTRY_ID";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 
+
 export const getCountries = () => async (dispatch) => {
   try {
-    let json = await axios.get("/countries");
-    return dispatch({ type: GET_COUNTRIES, payload: json.data });
+    return dispatch({ type: GET_COUNTRIES, payload: countryData });
   } catch (error) {
     console.log(error.message);
   }
@@ -17,16 +18,14 @@ export const getCountries = () => async (dispatch) => {
 
 export const getCountryByName = (name) => {
   return async function (dispatch) {
-    const response = await axios.get(`/countries?name=${name}`);
-    dispatch({ type: GET_COUNTRY_BY_NAME, payload: response.data });
-    console.log(response);
+    dispatch({ type: GET_COUNTRY_BY_NAME, payload: countryData });
+    console.log(countryData);
   };
 };
 
 export const getCountryId = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`/countries/${id}`);
-    dispatch({ type: GET_COUNTRY_ID, payload: response.data });
+    dispatch({ type: GET_COUNTRY_ID, payload: countryData });
   };
 };
 
@@ -36,8 +35,7 @@ export const cleanDetail = () => {
 
 export const getActivities = () => async (dispatch) => {
   try {
-    let json = await axios.get("/activities");
-    return dispatch({ type: GET_ACTIVITIES, payload: json.data });
+    return dispatch({ type: GET_ACTIVITIES, payload: activityData });
   } catch (error) {
     console.log(error.message);
   }
