@@ -19,6 +19,7 @@ export default function Home() {
     dispatch(getCountries());
     dispatch(getActivities());
   }, [dispatch]);
+  console.log(activities);
 
   const handleActivityChange = (event) => {
     setSelectedActivity(event.target.value);
@@ -31,7 +32,7 @@ export default function Home() {
 
   const filteredCountriesByActivity = selectedActivity
     ? filteredCountries.filter((country) =>
-        country.activities.some(
+        country.activities?.some(
           (activity) => activity.name === selectedActivity
         )
       )
