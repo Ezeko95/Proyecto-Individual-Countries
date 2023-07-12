@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { getCountries } from "../../redux/actions";
+import { getCountries, updateActivities } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import style from "./form.module.css";
 import validation from "./validate";
 
@@ -45,16 +44,10 @@ export default function Form() {
     }
   };
 
-  const submitHandler = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    try {
-      await axios.post("/activities", activity);
-      alert("Actividad creada exitósamente");
-    } catch (error) {
-      alert("Hubo un error al crear la actividad");
-      console.error(error);
-    }
-    window.location.reload();
+    dispatch(updateActivities(activity));
+    setActivity({ name: "", email: "", message: "" });
   };
 
   const sortedCountries = countries.sort((a, b) =>
@@ -70,7 +63,7 @@ export default function Form() {
       </div>
       <div className={style.div}>
         <h1 className={style.h1}>Creá tu actividad</h1>
-        <form onSubmit={submitHandler} className={style.formContainer}>
+        <form onSubmit={handleSubmit} className={style.formContainer}>
           <div className={style.div}>
             <label>Nombre: </label>
             <input

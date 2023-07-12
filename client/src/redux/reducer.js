@@ -1,9 +1,9 @@
 import {
   GET_COUNTRIES,
   CLEAN_DETAIL,
-  GET_COUNTRY_ID,
   GET_ACTIVITIES,
   GET_COUNTRY_BY_NAME,
+  UPDATE_ACTIVITIES
 } from "./actions";
 
 const initialState = {
@@ -46,6 +46,12 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_ACTIVITIES:
+      return {
+        ...state,
+        activities: action.payload,
+      };
+
+    case UPDATE_ACTIVITIES:
       return {
         ...state,
         activities: action.payload,

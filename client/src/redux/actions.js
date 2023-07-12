@@ -6,7 +6,7 @@ export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME";
 export const GET_COUNTRY_ID = "GET_COUNTRY_ID";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
-
+export const UPDATE_ACTIVITIES = "UPDATE_ACTIVITIES";
 
 export const getCountries = () => async (dispatch) => {
   try {
@@ -39,4 +39,11 @@ export const getActivities = () => async (dispatch) => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+export const updateActivities = (activities) => {
+  return {
+    type: UPDATE_ACTIVITIES,
+    payload: activities,
+  };
 };
