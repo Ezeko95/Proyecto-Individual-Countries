@@ -33,7 +33,7 @@ export default function NavBar({ setCurrentPage }) {
       <form>
         <input
           type="text"
-          placeholder="Buscar países..."
+          placeholder="Search Countries..."
           name="search"
           value={search}
           onChange={handleSearch}
