@@ -50,9 +50,6 @@ export default function Form() {
     setActivity({ name: "", email: "", message: "" });
   };
 
-  const sortedCountries = countries.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
 
   return (
     <div className={style.background}>
@@ -62,10 +59,10 @@ export default function Form() {
         </a>
       </div>
       <div className={style.div}>
-        <h1 className={style.h1}>Creá tu actividad</h1>
+        <h1 className={style.h1}>Create your activity</h1>
         <form onSubmit={handleSubmit} className={style.formContainer}>
           <div className={style.div}>
-            <label>Nombre: </label>
+            <label>Name: </label>
             <input
               type="text"
               value={activity.name}
@@ -76,7 +73,7 @@ export default function Form() {
             <span>{errors.name}</span>
           </div>
           <div className={style.div}>
-            <label>Dificultad: </label>
+            <label>Difficulty: </label>
             <select
               id="country"
               name="difficulty"
@@ -105,7 +102,7 @@ export default function Form() {
             />
           </div>
           <div className={style.div}>
-            <label>Temporadas: </label>
+            <label>Season: </label>
             <select
               id="country"
               name="season"
@@ -121,13 +118,13 @@ export default function Form() {
             <span>{errors.season}</span>
           </div>
           <div className={style.div}>
-            <label>Paises: </label>
+            <label>Countries: </label>
             <select
               name="country"
               onChange={handleSelect}
               className={style.select}
             >
-              <option value="">--Elegir países--</option>
+              <option value="">--Choose Countries--</option>
               {countries.map((country) => (
                 <option id="country" key={country.id} value={country.id}>
                   {country.name}
@@ -136,7 +133,7 @@ export default function Form() {
             </select>
           </div>
           <div className={style.div}>
-            <label>Países seleccionados:</label>
+            <label>Selected Countries:</label>
             <ul>
               {activity.country.map((selectedCountry, index) => (
                 <li key={index}>{selectedCountry.name}</li>

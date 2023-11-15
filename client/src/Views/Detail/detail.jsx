@@ -36,13 +36,13 @@ export default function Detail() {
             </div>
             <div className={style.details}>
               <div className={style.columnLeft}>
-                <h2>Continente: {countryDetail.continent}</h2>
+                <h2>Continent: {countryDetail.continent}</h2>
                 <h2>Capital: {countryDetail.capital}</h2>
                 <h2>Subregion: {countryDetail.subregion}</h2>
               </div>
               <div className={style.columnRight}>
-                <h2>Área: {countryDetail.area}km</h2>
-                <h2>Población: {countryDetail.population}</h2>
+                <h2>Area: {countryDetail.area}km</h2>
+                <h2>Poblation: {countryDetail.population}</h2>
               </div>
             </div>
             <h2>Activities:</h2>
@@ -58,7 +58,7 @@ export default function Detail() {
                   </div>
                 ))
               ) : (
-                <p>No hay actividades.</p>
+                <p>No activities found.</p>
               )}
             </div>
           </div>

@@ -26,10 +26,10 @@ export default function Activities() {
             return (
               <>
                 <div className="card" key={activity.id}>
-                  <h1>Nombre: {activity.name}</h1>
-                  <h2>Temporada: {activity.season}</h2>
-                  <h3>Duración: {activity.duration}</h3>
-                  <h3>Dificultad: {activity.difficulty}</h3>
+                  <h1>Name: {activity.name}</h1>
+                  <h2>Season: {activity.season}</h2>
+                  <h3>Duration: {activity.duration}</h3>
+                  <h3>Difficulty: {activity.difficulty}</h3>
                 </div>
               </>
             );

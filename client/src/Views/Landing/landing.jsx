@@ -6,11 +6,11 @@ export default function Landing() {
     <div className={style.landingContainer}>
       <div className={style.welcome}>
         <div className={style.h1}>
-          <h1>Bienvenidos!</h1>
+          <h1>Welcome!</h1>
         </div>
         <div>
           <Link to="/home">
-            <button className={style.button}>Click para entrar!</button>
+            <button className={style.button}>Enter!</button>
           </Link>
         </div>
       </div>

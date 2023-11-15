@@ -13,7 +13,7 @@ export default function Home() {
   const [selectedContinent, setSelectedContinent] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("");
-  const itemsPerPage = 10;
+  const itemsPerPage = 8;
 
   useEffect(() => {
     dispatch(getCountries());
@@ -87,12 +87,12 @@ export default function Home() {
       <div className={style.background}>
         <div className={style.filter}>
           <label>
-            Filtrar por
+            Filter By
             <br />
-            actividad:{" "}
+            activity:{" "}
           </label>
           <select value={selectedActivity} onChange={handleActivityChange}>
-            <option value="">--Todos--</option>
+            <option value="">--All--</option>
             {activities ? (
               activities.map((activity, index) => (
                 <option key={`${activity.name}-${index}`} value={activity.name}>
@@ -105,39 +105,39 @@ export default function Home() {
           </select>
 
           <label>
-            Filtrar por
+            Filter By
             <br />
-            continente:
+            continent:
           </label>
           <select value={selectedContinent} onChange={handleContinentChange}>
-            <option value="">--Todos--</option>
+            <option value="">--All--</option>
             <option value="Africa">Africa</option>
             <option value="Asia">Asia</option>
-            <option value="Europe">Europa</option>
-            <option value="North America">America del Norte</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
             <option value="Oceania">Oceania</option>
-            <option value="South America">America del sur</option>
+            <option value="South America">South America</option>
           </select>
           <label>
-            Ordenar
+            Order
             <br />
-            por:{" "}
+            By:{" "}
           </label>
           <select value={sortOrder} onChange={handleSortChange}>
-            <option value="">--Ordenar--</option>
-            <option value="ascName">Nombre (A-Z)</option>
-            <option value="descName">Nombre (Z-A)</option>
-            <option value="ascPopulation">Población (Menor a Mayor)</option>
-            <option value="descPopulation">Población (Mayor a Menor)</option>
+            <option value="">--Order--</option>
+            <option value="ascName">Name (A-Z)</option>
+            <option value="descName">Name (Z-A)</option>
+            <option value="ascPopulation">Poblation (Lower to Highest)</option>
+            <option value="descPopulation">Poblation (Highest to Lower)</option>
           </select>
         </div>
 
         <div className={style.pages}>
           <button disabled={currentPage === 1} onClick={goToPreviousPage}>
-            Anterior
+            Previous
           </button>
           <button disabled={currentPage === totalPages} onClick={goToNextPage}>
-            Siguiente
+            Next
           </button>
         </div>
 

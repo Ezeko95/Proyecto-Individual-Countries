@@ -10,7 +10,7 @@ export default function About() {
       </div>
       <div className={style.about}>
         <div className={style.titulo}>
-          <h1>Proyecto Countries por: Gianluca Cianchi</h1>
+          <h1>Made By: Gianluca Cianchi</h1>
         </div>
         <div className={style.parrafo}>
           <p>

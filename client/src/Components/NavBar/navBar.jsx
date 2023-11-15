@@ -20,24 +20,15 @@ export default function NavBar({ setCurrentPage }) {
     setSearch(event.target.value);
   };
 
-  const burger = () => {
-    let x = document.getElementById("links");
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "block";
-    }
-  };
-
   return (
     <div className={style.topnav}>
       <a className={style.active} href="/home">
         Home
       </a>
       <div id="#MyLinks" className={style.links}>
-        <a href="/activities">Actividades</a>
-        <a href="/about">Acerca de</a>
-        <a href="/form">Crear</a>
+        <a href="/activities">Activities</a>
+        <a href="/about">About</a>
+        <a href="/form">Create</a>
       </div>
       <form>
         <input
